@@ -1,10 +1,21 @@
 const express = require("express");
-const aiRoutes = require("./routes/ai.routes");
 const cors = require("cors");
+const dotenv = require("dotenv");
+const aiRoutes = require("./routes/ai.routes");
+
+dotenv.config(); 
 
 const app = express();
 
-app.use(cors());
+const frontendurl = process.env.FRONTEND_URL;
+
+app.use(
+  cors({
+    origin: frontendurl, 
+    credentials: true, 
+  })
+);
+
 
 app.use(express.json());
 

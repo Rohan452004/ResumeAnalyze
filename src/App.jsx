@@ -5,6 +5,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import "./App.css";
+import {API_ENDPOINTS} from "./api";
 
 function ErrorBoundary({ children }) {
   try {
@@ -25,6 +26,7 @@ function App() {
   };
 
   const handleSubmit = async () => {
+    setReview("Analyzing Resume...");
     if (!resume || !jobDescription) {
       alert("Please upload a resume and enter a job description.");
       return;
@@ -36,7 +38,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/ai/analyze-resume",
+        API_ENDPOINTS.ANALYZE_RESUME,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
