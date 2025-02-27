@@ -5,7 +5,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import "./App.css";
-import {API_ENDPOINTS} from "./api";
+import { API_ENDPOINTS } from "./api";
 
 function ErrorBoundary({ children }) {
   try {
@@ -52,15 +52,15 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-8 font-sans">
-      <div className="w-full max-w-5xl bg-gray-800 p-10 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4 sm:p-8 font-sans">
+      <div className="w-full max-w-5xl bg-gray-800 p-6 sm:p-10 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12">
         {/* Left Section - Input Fields */}
-        <div className="space-y-8">
-          <h1 className="text-3xl font-bold text-center mb-6">
+        <div className="space-y-6 sm:space-y-8">
+          <p className=" text-4xl sm:text-5xl font-semibold text-center mb-4 sm:mb-6">
             Resume Analyzer
-          </h1>
+          </p>
 
-          <div className="space-y-4">
+          <div className="space-y-10">
             <label className="block text-lg font-medium">
               Upload Resume (PDF)
             </label>
@@ -68,7 +68,7 @@ function App() {
               type="file"
               accept="application/pdf"
               onChange={handleFileChange}
-              className="w-full bg-gray-700 p-3 rounded-lg text-white file:mr-4 file:py-2 file:px-6 file:rounded-lg file:border-0 file:text-base file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 transition-colors"
+              className="w-full bg-gray-700 p-2 sm:p-3 rounded-lg text-white file:mr-4 file:py-2 file:px-4 sm:file:px-6 file:rounded-lg file:border-0 file:text-base file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 transition-colors"
             />
           </div>
 
@@ -78,23 +78,25 @@ function App() {
               placeholder="Enter job description here..."
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
-              className="w-full h-48 bg-gray-700 p-4 rounded-lg text-white resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full h-32 sm:h-48 bg-gray-700 p-3 sm:p-4 rounded-lg text-white resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
           </div>
 
           <button
             onClick={handleSubmit}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 sm:py-3 rounded-lg transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Analyze Resume
           </button>
         </div>
 
         {/* Right Section - Review Output */}
-        <div className="bg-gray-700 p-8 rounded-lg">
-          <h2 className="text-2xl font-semibold mb-6">Review:</h2>
+        <div className="bg-gray-700 p-4 sm:p-8 rounded-lg">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
+            Review:
+          </h2>
           <ErrorBoundary>
-            <div className="text-gray-300 text-lg markdown-content">
+            <div className="text-gray-300 text-base sm:text-lg markdown-content">
               <ReactMarkdown
                 rehypePlugins={[rehypeRaw, rehypeHighlight]}
                 components={{
@@ -122,20 +124,26 @@ function App() {
                   h1: ({ node, ...props }) => (
                     <h1
                       {...props}
-                      className="text-3xl font-bold mb-6 border-b-2 border-gray-600 pb-2"
+                      className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 border-b-2 border-gray-600 pb-2"
                     />
                   ),
                   h2: ({ node, ...props }) => (
                     <h2
                       {...props}
-                      className="text-2xl font-bold mb-4 border-b-2 border-gray-600 pb-2"
+                      className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 border-b-2 border-gray-600 pb-2"
                     />
                   ),
                   h3: ({ node, ...props }) => (
-                    <h3 {...props} className="text-xl font-bold mb-4" />
+                    <h3
+                      {...props}
+                      className="text-lg sm:text-xl font-bold mb-3"
+                    />
                   ),
                   h4: ({ node, ...props }) => (
-                    <h4 {...props} className="text-lg font-bold mb-3" />
+                    <h4
+                      {...props}
+                      className="text-base sm:text-lg font-bold mb-2"
+                    />
                   ),
                   // Code blocks
                   code: ({ node, ...props }) => (
@@ -147,7 +155,7 @@ function App() {
                   pre: ({ node, ...props }) => (
                     <pre
                       {...props}
-                      className="bg-gray-800 p-4 rounded-lg overflow-x-auto my-4"
+                      className="bg-gray-800 p-3 sm:p-4 rounded-lg overflow-x-auto my-4"
                     />
                   ),
                   // Links
